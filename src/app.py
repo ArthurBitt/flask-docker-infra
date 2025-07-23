@@ -15,5 +15,4 @@ def log_to_redis(message):
 
 @app.route('/health')
 def health():
-    log_to_redis("health_check endpoint foi chamado")
     return 'ok', 200

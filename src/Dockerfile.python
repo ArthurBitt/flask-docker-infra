@@ -6,11 +6,11 @@ EXPOSE 5000
 
 WORKDIR /server
 
-COPY ./src/app.py /server/
-
 RUN pip install flask && \
     pip install redis && \
     apk add curl
+
+COPY ./src/app.py /server/
 
 HEALTHCHECK  CMD \
     curl -sf localhost:5000/health || exit 1
