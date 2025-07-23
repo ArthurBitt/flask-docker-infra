@@ -13,11 +13,7 @@ def log_to_redis(message):
     r.lpush("flask_logs", full_message)        # adiciona no início da lista
     r.ltrim("flask_logs", 0, 99)               # mantém apenas os 100 mais recentes (cache leve)
 
-@app.route('/health_check')
-def health_check():
+@app.route('/health')
+def health():
     log_to_redis("health_check endpoint foi chamado")
-    return {'status':'ok'}, 200
-
-if __name__ == '__main__':
-    log_to_redis("Servidor Flask iniciando...")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    return 'ok', 200
